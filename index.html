@@ -385,7 +385,7 @@
         </div>
     </div>
 
-    <!-- Script -->
+    <!-- Script Initialization & Control Engine -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const SECRET_ADMIN_PASS = "prime2026"; 
@@ -541,6 +541,7 @@
                 }
             }
 
+            // Triple-click logo easter egg for secret admin modal
             navLogo.addEventListener('click', () => {
                 logoClickCount++;
                 if (logoClickCount === 1) {
