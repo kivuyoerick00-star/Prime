@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIME QUIZES</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex justify-between items-center">
+        <div id="nav-logo" class="text-2xl font-black tracking-wider text-indigo-400 cursor-pointer flex items-center gap-2 select-none" title="PRIME QUIZES">
+            <span>⚡</span> PRIME <span class="text-white">QUIZES</span>
+        </div>
+        <div class="flex items-center gap-3 font-medium text-sm">
+            <button type="button" id="nav-home-btn" class="px-3 py-2 rounded-xl hover:bg-slate-800 transition text-slate-300 cursor-pointer">Home</button>
+            <button type="button" id="nav-play-btn" class="px-3 py-2 rounded-xl hover:bg-slate-800 transition text-slate-300 cursor-pointer">Categories</button>
+            <button type="button" id="nav-hub-btn" class="px-3 py-2 rounded-xl hover:bg-slate-800 transition text-indigo-400 font-bold cursor-pointer">🏆 Community Hub</button>
+            
+            <div id="nav-auth-area" class="flex items-center gap-2">
+                <button type="button" id="nav-login-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-slate-200 cursor-pointer">Log In</button>
+                <button type="button" id="nav-signup-btn" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition font-bold shadow-lg shadow-indigo-600/25 cursor-pointer">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow flex items-center justify-center p-6">
+
+        <!-- HOME SCREEN: CATEGORY SELECTION -->
+        <div id="home-screen" class="text-center max-w-3xl py-12">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6 uppercase tracking-wider">
+                🚀 Ultimate Categorized Challenge Platform
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                Choose a Topic on <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">PRIME QUIZES</span>
+            </h1>
+            <p class="text-slate-400 text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
+                Select a category below to test your mastery across Geography, Biology, World Map, History, and more!
+            </p>
+
+            <!-- Category Grid Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 text-left">
+                <button type="button" data-category="Geography" class="category-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500 transition cursor-pointer group">
+                    <div class="text-2xl mb-2">🌍</div>
+                    <div class="text-white font-extrabold text-sm mb-1 group-hover:text-indigo-400 transition">Geography</div>
+                    <div class="text-[11px] text-slate-400">Mountains, rivers, capitals, and landmarks.</div>
+                </button>
+                <button type="button" data-category="Biology" class="category-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500 transition cursor-pointer group">
+                    <div class="text-2xl mb-2">🧬</div>
+                    <div class="text-white font-extrabold text-sm mb-1 group-hover:text-emerald-400 transition">Biology</div>
+                    <div class="text-[11px] text-slate-400">Cells, ecosystems, anatomy, and living systems.</div>
+                </button>
+                <button type="button" data-category="World Map" class="category-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-violet-500 transition cursor-pointer group">
+                    <div class="text-2xl mb-2">🗺️</div>
+                    <div class="text-white font-extrabold text-sm mb-1 group-hover:text-violet-400 transition">World Map</div>
+                    <div class="text-[11px] text-slate-400">Continents, countries, oceans, and borders.</div>
+                </button>
+                <button type="button" data-category="History" class="category-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500 transition cursor-pointer group">
+                    <div class="text-2xl mb-2">🏛️</div>
+                    <div class="text-white font-extrabold text-sm mb-1 group-hover:text-amber-400 transition">History</div>
+                    <div class="text-[11px] text-slate-400">Major historical events, eras, and figures.</div>
+                </button>
+                <button type="button" data-category="General" class="category-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-rose-500 transition cursor-pointer group">
+                    <div class="text-2xl mb-2">⚡</div>
+                    <div class="text-white font-extrabold text-sm mb-1 group-hover:text-rose-400 transition">General Science</div>
+                    <div class="text-[11px] text-slate-400">Physics, chemistry, and general knowledge.</div>
+                </button>
+            </div>
+
+            <div class="flex justify-center gap-4">
+                <button type="button" id="home-hub-btn" class="bg-slate-900 border border-slate-800 text-slate-200 font-bold px-8 py-3.5 rounded-2xl text-sm hover:bg-slate-800 transition cursor-pointer">
+                    Leaderboard & Chat 🏆
+                </button>
+            </div>
+        </div>
+
+        <!-- DIFFICULTY SELECTION MODAL / VIEW -->
+        <div id="difficulty-screen" class="hidden text-center max-w-xl w-full bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-2xl backdrop-blur-xl">
+            <span id="selected-category-badge" class="inline-block px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-4 uppercase tracking-wider">
+                Category
+            </span>
+            <h2 class="text-2xl font-extrabold text-white mb-2">Select Difficulty Level</h2>
+            <p class="text-slate-400 text-xs mb-6">Choose how challenging you want this round to be.</p>
+
+            <div class="space-y-3 mb-6">
+                <button type="button" data-difficulty="Beginner" class="difficulty-btn w-full p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 hover:border-emerald-500 transition text-left cursor-pointer flex items-center justify-between group">
+                    <div>
+                        <div class="text-emerald-400 font-extrabold text-sm mb-0.5 group-hover:scale-105 transition transform">🟢 Beginner</div>
+                        <div class="text-[11px] text-slate-400">Foundational warm-up questions.</div>
+                    </div>
+                    <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">1.0x XP</span>
+                </button>
+                <button type="button" data-difficulty="Medium" class="difficulty-btn w-full p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 hover:border-indigo-500 transition text-left cursor-pointer flex items-center justify-between group">
+                    <div>
+                        <div class="text-indigo-400 font-extrabold text-sm mb-0.5 group-hover:scale-105 transition transform">⚡ Medium</div>
+                        <div class="text-[11px] text-slate-400">Balanced challenge for regular players.</div>
+                    </div>
+                    <span class="text-xs font-bold text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-lg">1.5x XP</span>
+                </button>
+                <button type="button" data-difficulty="Hard" class="difficulty-btn w-full p-4 rounded-2xl bg-rose-950/40 border border-rose-500/30 hover:border-rose-500 transition text-left cursor-pointer flex items-center justify-between group">
+                    <div>
+                        <div class="text-rose-400 font-extrabold text-sm mb-0.5 group-hover:scale-105 transition transform">🔥 Hard</div>
+                        <div class="text-[11px] text-slate-400">Expert questions for elite minds.</div>
+                    </div>
+                    <span class="text-xs font-bold text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-lg">2.0x XP</span>
+                </button>
+            </div>
+
+            <button type="button" id="back-to-categories-btn" class="w-full py-3 bg-slate-800 text-slate-300 font-bold rounded-xl hover:bg-slate-700 transition text-xs cursor-pointer">
+                ← Choose Different Category
+            </button>
+        </div>
+
+        <!-- COMMUNITY HUB -->
+        <div id="community-hub" class="hidden w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+            <!-- Left Column: Leaderboard & Online Players -->
+            <div class="bg-slate-900/90 border border-slate-800 p-6 rounded-3xl shadow-2xl flex flex-col justify-between">
+                <div>
+                    <h2 class="text-lg font-black text-amber-400 mb-3 flex items-center gap-2">🏆 Leaderboard</h2>
+                    <div id="leaderboard-list" class="space-y-2 mb-6 max-h-40 overflow-y-auto pr-1 text-xs"></div>
+
+                    <h2 class="text-lg font-black text-indigo-400 mb-2 flex items-center gap-2">👥 Players Online</h2>
+                    <p class="text-[10px] text-slate-400 mb-2">Click any player to start a Private Direct Message.</p>
+                    <div id="online-players-list" class="flex flex-col gap-2 max-h-40 overflow-y-auto"></div>
+                </div>
+                <button type="button" id="hub-back-btn" class="mt-6 w-full py-3 bg-slate-800 text-slate-300 font-bold rounded-xl hover:bg-slate-700 transition text-xs cursor-pointer">Back to Categories</button>
+            </div>
+
+            <!-- Right Column: Chat Box -->
+            <div class="md:col-span-2 bg-slate-900/90 border border-slate-800 p-6 rounded-3xl shadow-2xl flex flex-col h-[500px]">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                    <div class="flex items-center gap-2">
+                        <button type="button" id="tab-global-btn" class="px-4 py-2 rounded-xl bg-emerald-600 text-slate-950 font-extrabold text-xs transition cursor-pointer">💬 Global Chat</button>
+                        <button type="button" id="tab-dm-btn" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs transition cursor-pointer">🔒 Direct Messages</button>
+                    </div>
+                    <span id="active-chat-title" class="text-xs font-bold text-emerald-400">Public Channel</span>
+                </div>
+                <div id="chat-messages" class="flex-grow bg-slate-950 border border-slate-800/80 rounded-2xl p-4 overflow-y-auto space-y-3 mb-4 text-xs"></div>
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Say something to global players..." autocomplete="off" class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-xs focus:border-emerald-500 outline-none">
+                    <button type="submit" id="chat-send-btn" class="bg-emerald-600 text-slate-950 font-bold px-5 py-3 rounded-xl hover:bg-emerald-500 transition text-xs cursor-pointer">Send</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- QUIZ ROOM SCREEN -->
+        <div id="quiz-screen" class="hidden w-full max-w-xl bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-2xl backdrop-blur-xl">
+            <div class="flex justify-between items-center mb-6 text-sm font-semibold text-slate-400">
+                <span id="question-progress" class="bg-slate-800 px-3 py-1 rounded-lg text-slate-300 text-xs">Question 1 of 3</span>
+                <div class="flex items-center gap-2">
+                    <span id="streak-box" class="hidden px-2.5 py-1 rounded-lg text-amber-300 bg-amber-500/20 border border-amber-500/30 text-xs font-bold">🔥 Streak: 0</span>
+                    <span id="timer-box" class="px-3 py-1.5 rounded-xl text-white bg-indigo-600 font-bold shadow-md">⏳ 15s</span>
+                </div>
+            </div>
+            <h2 id="question-text" class="text-2xl font-extrabold mb-6 text-white leading-snug"></h2>
+            <div id="options-container" class="space-y-3 mb-8"></div>
+            <button type="button" id="next-btn" disabled class="w-full py-4 rounded-2xl font-bold text-slate-500 bg-slate-800 cursor-not-allowed transition text-sm">
+                Next Question
+            </button>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="results-screen" class="hidden max-w-xl w-full bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-2xl backdrop-blur-xl text-center">
+            <div id="cheers-emoji" class="text-6xl mb-3 animate-bounce">🏆</div>
+            <h2 id="cheers-title" class="text-3xl font-extrabold mb-1 text-white">Amazing Job!</h2>
+            <p id="cheers-message" class="text-slate-400 text-sm mb-6">You completely crushed the challenge.</p>
+            
+            <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 mb-6">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-1">XP Earned This Round</span>
+                <div class="text-5xl font-black text-indigo-400" id="final-score-display">0 XP</div>
+            </div>
+
+            <!-- Answer Breakdown Section -->
+            <div class="mb-6 text-left">
+                <h3 class="text-sm font-extrabold text-slate-300 uppercase tracking-wider mb-3 flex items-center justify-between">
+                    <span>📋 Question Review Breakdown</span>
+                    <span class="text-[10px] text-slate-400 font-normal">Your Answer vs Correct Answer</span>
+                </h3>
+                <div id="review-breakdown-list" class="space-y-3 max-h-60 overflow-y-auto pr-1 text-xs"></div>
+            </div>
+
+            <div class="space-y-3">
+                <button type="button" id="results-retry-btn" class="w-full bg-indigo-600 text-white font-bold py-3.5 rounded-2xl hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/30 text-sm cursor-pointer">
+                    Try Again 🔄
+                </button>
+                <button type="button" id="results-hub-btn" class="w-full bg-amber-500 text-slate-950 font-bold py-3.5 rounded-2xl hover:bg-amber-400 transition text-sm cursor-pointer">
+                    View Leaderboard & Ranks 🏆
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md p-8 rounded-3xl shadow-2xl relative">
+            <button type="button" id="auth-close-btn" class="absolute top-6 right-6 text-slate-400 hover:text-white text-sm bg-slate-800 px-3 py-1.5 rounded-xl cursor-pointer">✕ Close</button>
+            <h2 id="auth-modal-title" class="text-2xl font-extrabold text-white mb-2">Create Account</h2>
+            <p id="auth-modal-subtitle" class="text-slate-400 text-xs mb-6">Enter your details to register for PRIME QUIZES.</p>
+            <form id="auth-form" class="space-y-4">
+                <div id="signup-fields">
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Full Name</label>
+                    <input type="text" id="auth-fullname" placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:border-indigo-500 outline-none text-sm mb-3">
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Nickname / Username</label>
+                    <input type="text" id="auth-nickname" placeholder="PrimeUser" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:border-indigo-500 outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Email Address</label>
+                    <input type="email" id="auth-email" required placeholder="name@example.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:border-indigo-500 outline-none text-sm">
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-1.5">
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Password</label>
+                        <button type="button" id="forgot-password-trigger" class="hidden text-xs text-indigo-400 hover:underline cursor-pointer">Forgot Password?</button>
+                    </div>
+                    <div class="relative">
+                        <input type="password" id="auth-password" required placeholder="••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 pr-10 text-white focus:border-indigo-500 outline-none text-sm">
+                        <button type="button" id="toggle-password-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs font-bold cursor-pointer">👁️</button>
+                    </div>
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full bg-indigo-600 text-white font-bold py-3.5 rounded-xl hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/30 text-sm mt-2 cursor-pointer">
+                    Sign Up
+                </button>
+            </form>
+            <div class="mt-6 text-center text-xs text-slate-400">
+                <span id="auth-switch-text">Already have an account?</span> 
+                <button type="button" id="auth-switch-btn" class="text-indigo-400 font-bold hover:underline ml-1 cursor-pointer">Log In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORGOT PASSWORD MODAL -->
+    <div id="forgot-modal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md p-8 rounded-3xl shadow-2xl relative">
+            <button type="button" id="forgot-close-btn" class="absolute top-6 right-6 text-slate-400 hover:text-white text-sm bg-slate-800 px-3 py-1.5 rounded-xl cursor-pointer">✕ Close</button>
+            <h2 class="text-2xl font-extrabold text-white mb-2">Reset Password</h2>
+            <p class="text-slate-400 text-xs mb-6">Verify your identity to set a brand new password.</p>
+            <form id="forgot-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Registered Email</label>
+                    <input type="email" id="forgot-email" required placeholder="name@example.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:border-indigo-500 outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Your Full Name</label>
+                    <input type="text" id="forgot-fullname" required placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:border-indigo-500 outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">New Password</label>
+                    <input type="password" id="forgot-newpassword" required placeholder="••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:border-indigo-500 outline-none text-sm">
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3.5 rounded-xl hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/30 text-sm mt-2 cursor-pointer">
+                    Update Password 🔒
+                </button>
+                <div id="forgot-status" class="text-center text-xs font-bold"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SECRET ADMIN MODAL -->
+    <div id="admin-modal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/50 w-full max-w-3xl p-8 rounded-3xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button type="button" id="admin-close-btn" class="absolute top-6 right-6 text-slate-400 hover:text-white text-sm bg-slate-800 px-3 py-1.5 rounded-xl cursor-pointer">✕ Close</button>
+            
+            <h2 class="text-2xl font-extrabold text-amber-400 mb-1 flex items-center gap-2">🛠️ Secret Admin Control Center</h2>
+            <p class="text-slate-400 text-xs mb-6">Restricted to Prime only. Monitor website analytics, manage users, assist with passwords, and add category questions.</p>
+
+            <div id="admin-lock-screen" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Admin Passcode</label>
+                    <input type="password" id="admin-passcode-input" placeholder="Enter secret code..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:border-amber-500 outline-none text-sm">
+                </div>
+                <button type="button" id="admin-unlock-btn" class="w-full bg-amber-500 text-slate-950 font-extrabold py-3.5 rounded-xl hover:bg-amber-400 transition text-sm cursor-pointer">
+                    Unlock Control Center 🔓
+                </button>
+                <div id="admin-lock-error" class="text-rose-400 text-xs text-center font-bold"></div>
+            </div>
+
+            <div id="admin-dashboard" class="hidden space-y-6">
+                <!-- Admin Navigation Tabs -->
+                <div class="flex items-center gap-2 border-b border-slate-800 pb-4">
+                    <button type="button" id="admin-tab-users" class="px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-extrabold text-xs transition cursor-pointer">👥 Users & Credentials</button>
+                    <button type="button" id="admin-tab-analytics" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs transition cursor-pointer">📊 Traffic & Hits</button>
+                    <button type="button" id="admin-tab-questions" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs transition cursor-pointer">➕ Question Manager</button>
+                </div>
+
+                <!-- SECTION 1: USERS & CREDENTIALS DIRECTORY -->
+                <div id="admin-sec-users" class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-sm font-extrabold text-amber-400 uppercase tracking-wider">Registered Player Accounts</h3>
+                        <span id="admin-total-users-badge" class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-300 text-xs font-bold border border-amber-500/30">Total: 0 Users</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">View user credentials and instantly reset any player's password if they need assistance.</p>
+                    <div id="admin-users-list" class="space-y-3 max-h-80 overflow-y-auto pr-1 text-xs"></div>
+                </div>
+
+                <!-- SECTION 2: WEBSITE ANALYTICS & HITS -->
+                <div id="admin-sec-analytics" class="hidden space-y-4">
+                    <h3 class="text-sm font-extrabold text-amber-400 uppercase tracking-wider">Website Traffic & Hit Trends</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Total Page Hits / Visits</span>
+                            <div class="text-4xl font-black text-amber-400" id="stat-total-hits">0</div>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Registered Accounts</span>
+                            <div class="text-4xl font-black text-indigo-400" id="stat-total-accounts">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: QUESTION MANAGER -->
+                <div id="admin-sec-questions" class="hidden space-y-6">
+                    <form id="admin-form" class="space-y-4 bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-extrabold text-amber-400 uppercase tracking-wider">➕ Add Question to Specific Category</h3>
+                            <span id="admin-target-indicator" class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-300 text-[11px] font-bold border border-amber-500/30">Target: Geography</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Selected Category</label>
+                                <select id="admin-category" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white focus:border-amber-500 outline-none text-xs">
+                                    <option value="Geography">🌍 Geography</option>
+                                    <option value="Biology">🧬 Biology</option>
+                                    <option value="World Map">🗺️ World Map</option>
+                                    <option value="History">🏛️ History</option>
+                                    <option value="General">⚡ General Science</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Difficulty Level</label>
+                                <select id="admin-difficulty" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white focus:border-amber-500 outline-none text-xs">
+                                    <option value="Beginner">🟢 Beginner</option>
+                                    <option value="Medium">⚡ Medium</option>
+                                    <option value="Hard">🔥 Hard</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Question Text</label>
+                            <input type="text" id="admin-qtext" required placeholder="e.g. What is the powerhouse of the cell?" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white focus:border-amber-500 outline-none text-sm">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Option A (Index 0)</label>
+                                <input type="text" id="admin-opt0" required placeholder="Nucleus" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-white focus:border-amber-500 outline-none text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Option B (Index 1)</label>
+                                <input type="text" id="admin-opt1" required placeholder="Mitochondria" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-white focus:border-amber-500 outline-none text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Option C (Index 2)</label>
+                                <input type="text" id="admin-opt2" required placeholder="Ribosome" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-white focus:border-amber-500 outline-none text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Option D (Index 3)</label>
+                                <input type="text" id="admin-opt3" required placeholder="Golgi body" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-white focus:border-amber-500 outline-none text-xs">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Correct Answer Index (0, 1, 2, or 3)</label>
+                            <input type="number" id="admin-correct" min="0" max="3" required value="1" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white focus:border-amber-500 outline-none text-sm">
+                        </div>
+                        <button type="submit" class="w-full bg-amber-500 text-slate-950 font-extrabold py-3.5 rounded-xl hover:bg-amber-400 transition shadow-lg shadow-amber-500/20 text-sm cursor-pointer">
+                            Push Live Question to Category 🚀
+                        </button>
+                        <div id="admin-status" class="text-center text-xs font-bold text-emerald-400"></div>
+                    </form>
+
+                    <!-- Existing Question Bank List -->
+                    <div>
+                        <h3 class="text-sm font-extrabold text-slate-300 uppercase tracking-wider mb-2">📋 Existing Question Bank & Manager</h3>
+                        <p class="text-[11px] text-slate-400 mb-3">View all questions organized by category, inspect options, or delete any question instantly.</p>
+                        <div id="admin-bank-list" class="space-y-3 max-h-72 overflow-y-auto pr-1 text-xs"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const SECRET_ADMIN_PASS = "prime2026"; 
+
+            // Track Website Hits
+            let totalHits = parseInt(localStorage.getItem('prime_total_hits') || '0') + 1;
+            localStorage.setItem('prime_total_hits', totalHits);
+
+            const defaultQuestions = [
+                { text: "What is the highest mountain in Tanzania?", options: ["Mount Meru", "Mount Kilimanjaro", "Mount Oldoinyo Lengai", "Mount Hanang"], correctIndex: 1, difficulty: "Beginner", category: "Geography" },
+                { text: "In which year did Tanganyika gain independence from Britain?", options: ["1954", "1961", "1964", "1970"], correctIndex: 1, difficulty: "Medium", category: "History" },
+                { text: "What is the official capital of Tanzania?", options: ["Dar es Salaam", "Arusha", "Dodoma", "Mwanza"], correctIndex: 2, difficulty: "Beginner", category: "Geography" },
+                { text: "Which chemical element has the highest melting point?", options: ["Iron", "Carbon", "Tungsten", "Platinum"], correctIndex: 2, difficulty: "Hard", category: "General" },
+                { text: "What is the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome", "Chloroplast"], correctIndex: 1, difficulty: "Beginner", category: "Biology" },
+                { text: "Which African country is completely enclosed by South Africa?", options: ["Botswana", "Eswatini", "Lesotho", "Namibia"], correctIndex: 2, difficulty: "Hard", category: "World Map" }
+            ];
+
+            function getQuizData() {
+                const saved = localStorage.getItem('prime_global_questions_bank');
+                return saved ? JSON.parse(saved) : defaultQuestions;
+            }
+
+            let quizData = [];
+            let currentCategory = 'Geography';
+            let currentDifficulty = 'Beginner';
+            let currentQuestionIndex = 0;
+            let roundXP = 0;
+            let correctAnswersCount = 0;
+            let currentStreak = 0;
+            let selectedOptionIndex = null;
+            let timeLeft = 15;
+            let timerInterval;
+            let isLoginMode = false;
+            let logoClickCount = 0;
+            let logoClickTimer = null;
+            
+            let currentChatMode = 'global';
+            let activeDmRecipient = null;
+            let quizHistoryTracker = [];
+
+            function playVictorySound() {
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    const ctx = new AudioContext();
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, index) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.value = freq;
+                        gain.gain.setValueAtTime(0.15, ctx.currentTime + index * 0.12);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + index * 0.12 + 0.4);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(ctx.currentTime + index * 0.12);
+                        osc.stop(ctx.currentTime + index * 0.12 + 0.4);
+                    });
+                } catch (e) {}
+            }
+
+            const homeScreen = document.getElementById('home-screen');
+            const difficultyScreen = document.getElementById('difficulty-screen');
+            const quizScreen = document.getElementById('quiz-screen');
+            const resultsScreen = document.getElementById('results-screen');
+            const communityHub = document.getElementById('community-hub');
+            const selectedCategoryBadge = document.getElementById('selected-category-badge');
+            
+            const authModal = document.getElementById('auth-modal');
+            const authModalTitle = document.getElementById('auth-modal-title');
+            const authModalSubtitle = document.getElementById('auth-modal-subtitle');
+            const authSubmitBtn = document.getElementById('auth-submit-btn');
+            const signupFields = document.getElementById('signup-fields');
+            const authSwitchText = document.getElementById('auth-switch-text');
+            const authSwitchBtn = document.getElementById('auth-switch-btn');
+            const navAuthArea = document.getElementById('nav-auth-area');
+            const authPasswordInput = document.getElementById('auth-password');
+            const togglePasswordBtn = document.getElementById('toggle-password-btn');
+            const forgotPasswordTrigger = document.getElementById('forgot-password-trigger');
+
+            const forgotModal = document.getElementById('forgot-modal');
+            const forgotCloseBtn = document.getElementById('forgot-close-btn');
+            const forgotForm = document.getElementById('forgot-form');
+            const forgotStatus = document.getElementById('forgot-status');
+
+            const questionText = document.getElementById('question-text');
+            const optionsContainer = document.getElementById('options-container');
+            const questionProgress = document.getElementById('question-progress');
+            const timerBox = document.getElementById('timer-box');
+            const streakBox = document.getElementById('streak-box');
+            const nextBtn = document.getElementById('next-btn');
+            const finalScoreDisplay = document.getElementById('final-score-display');
+            const reviewBreakdownList = document.getElementById('review-breakdown-list');
+            const leaderboardList = document.getElementById('leaderboard-list');
+            const onlinePlayersList = document.getElementById('online-players-list');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+            const chatSendBtn = document.getElementById('chat-send-btn');
+            const tabGlobalBtn = document.getElementById('tab-global-btn');
+            const tabDmBtn = document.getElementById('tab-dm-btn');
+            const activeChatTitle = document.getElementById('active-chat-title');
+
+            const navLogo = document.getElementById('nav-logo');
+            const adminModal = document.getElementById('admin-modal');
+            const adminLockScreen = document.getElementById('admin-lock-screen');
+            const adminDashboard = document.getElementById('admin-dashboard');
+            const adminPasscodeInput = document.getElementById('admin-passcode-input');
+            const adminUnlockBtn = document.getElementById('admin-unlock-btn');
+            const adminLockError = document.getElementById('admin-lock-error');
+            const adminForm = document.getElementById('admin-form');
+            const adminStatus = document.getElementById('admin-status');
+            const adminCloseBtn = document.getElementById('admin-close-btn');
+            const adminBankList = document.getElementById('admin-bank-list');
+            const adminCategorySelect = document.getElementById('admin-category');
+            const adminTargetIndicator = document.getElementById('admin-target-indicator');
+
+            // Admin Panel Tabs
+            const adminTabUsers = document.getElementById('admin-tab-users');
+            const adminTabAnalytics = document.getElementById('admin-tab-analytics');
+            const adminTabQuestions = document.getElementById('admin-tab-questions');
+            const adminSecUsers = document.getElementById('admin-sec-users');
+            const adminSecAnalytics = document.getElementById('admin-sec-analytics');
+            const adminSecQuestions = document.getElementById('admin-sec-questions');
+            const adminUsersList = document.getElementById('admin-users-list');
+            const adminTotalUsersBadge = document.getElementById('admin-total-users-badge');
+            const statTotalHits = document.getElementById('stat-total-hits');
+            const statTotalAccounts = document.getElementById('stat-total-accounts');
+
+            adminTabUsers.addEventListener('click', () => switchAdminTab('users'));
+            adminTabAnalytics.addEventListener('click', () => switchAdminTab('analytics'));
+            adminTabQuestions.addEventListener('click', () => switchAdminTab('questions'));
+
+            function switchAdminTab(tab) {
+                adminTabUsers.className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs transition cursor-pointer";
+                adminTabAnalytics.className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs transition cursor-pointer";
+                adminTabQuestions.className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs transition cursor-pointer";
+                adminSecUsers.classList.add('hidden');
+                adminSecAnalytics.classList.add('hidden');
+                adminSecQuestions.classList.add('hidden');
+
+                if (tab === 'users') {
+                    adminTabUsers.className = "px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-extrabold text-xs transition cursor-pointer";
+                    adminSecUsers.classList.remove('hidden');
+                    renderAdminUsersList();
+                } else if (tab === 'analytics') {
+                    adminTabAnalytics.className = "px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-extrabold text-xs transition cursor-pointer";
+                    adminSecAnalytics.classList.remove('hidden');
+                    renderAdminAnalytics();
+                } else if (tab === 'questions') {
+                    adminTabQuestions.className = "px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-extrabold text-xs transition cursor-pointer";
+                    adminSecQuestions.classList.remove('hidden');
+                    renderAdminQuestionBankList();
+                }
+            }
+
+            navLogo.addEventListener('click', () => {
+                logoClickCount++;
+                if (logoClickCount === 1) {
+                    logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 600);
+                } else if (logoClickCount >= 3) {
+                    clearTimeout(logoClickTimer);
+                    logoClickCount = 0;
+                    
+                    if (adminCategorySelect) {
+                        adminCategorySelect.value = currentCategory;
+                        if (adminTargetIndicator) adminTargetIndicator.textContent = `Target: ${currentCategory}`;
+                    }
+
+                    adminLockScreen.classList.remove('hidden');
+                    adminDashboard.classList.add('hidden');
+                    adminPasscodeInput.value = "";
+                    adminLockError.textContent = "";
+                    adminModal.classList.remove('hidden');
+                }
+            });
+
+            if (adminCategorySelect) {
+                adminCategorySelect.addEventListener('change', () => {
+                    if (adminTargetIndicator) adminTargetIndicator.textContent = `Target: ${adminCategorySelect.value}`;
+                });
+            }
+
+            adminCloseBtn.addEventListener('click', () => {
+                adminModal.classList.add('hidden');
+                adminStatus.textContent = "";
+            });
+
+            adminUnlockBtn.addEventListener('click', () => {
+                if (adminPasscodeInput.value === SECRET_ADMIN_PASS) {
+                    adminLockScreen.classList.add('hidden');
+                    adminDashboard.classList.remove('hidden');
+                    adminLockError.textContent = "";
+                    switchAdminTab('users');
+                } else {
+                    adminLockError.textContent = "❌ Incorrect Passcode. Access Denied.";
+                }
+            });
+
+            function renderAdminAnalytics() {
+                let users = JSON.parse(localStorage.getItem('prime_users_db') || '[]');
+                statTotalHits.textContent = localStorage.getItem('prime_total_hits') || '1';
+                statTotalAccounts.textContent = users.length;
+            }
+
+            function renderAdminUsersList() {
+                let users = JSON.parse(localStorage.getItem('prime_users_db') || '[]');
+                adminUsersList.innerHTML = "";
+                adminTotalUsersBadge.textContent = `Total: ${users.length} Users`;
+
+                if (users.length === 0) {
+                    adminUsersList.innerHTML = `<p class="text-slate-500 italic text-xs text-center py-4">No registered users yet.</p>`;
+                    return;
+                }
+
+                users.forEach((u, index) => {
+                    const card = document.createElement('div');
+                    card.className = "bg-slate-950 border border-slate-800 p-3.5 rounded-2xl flex flex-col gap-2 text-xs";
+                    card.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-amber-400">👤 @${u.nickname}</span>
+                            <span class="text-[11px] text-slate-400 font-mono">Email: ${u.email}</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-slate-900 p-2.5 rounded-xl border border-slate-800/80">
+                            <div>
+                                <span class="text-slate-400 font-semibold">Full Name:</span> <span class="text-white">${u.fullName}</span><br>
+                                <span class="text-slate-400 font-semibold">Password:</span> <span class="text-emerald-400 font-mono font-bold">${u.password}</span>
+                            </div>
+                            <button type="button" data-index="${index}" class="reset-pwd-btn bg-amber-500/10 text-amber-300 hover:bg-amber-500 hover:text-slate-950 px-3 py-2 rounded-xl font-bold transition cursor-pointer border border-amber-500/30">Reset Pass 🔑</button>
+                        </div>
+                    `;
+                    adminUsersList.appendChild(card);
+                });
+
+                document.querySelectorAll('.reset-pwd-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const idx = parseInt(e.target.getAttribute('data-index'));
+                        let users = JSON.parse(localStorage.getItem('prime_users_db') || '[]');
+                        const newPwd = prompt(`Enter new password for @${users[idx].nickname}:`, "prime123");
+                        if (newPwd) {
+                            users[idx].password = newPwd;
+                            localStorage.setItem('prime_users_db', JSON.stringify(users));
+                            alert(`✅ Password updated successfully for @${users[idx].nickname}!`);
+                            renderAdminUsersList();
+                        }
+                    });
+                });
+            }
+
+            function renderAdminQuestionBankList() {
+                let currentBank = getQuizData();
+                adminBankList.innerHTML = "";
+                if (currentBank.length === 0) {
+                    adminBankList.innerHTML = `<p class="text-slate-500 italic text-xs text-center py-4">No questions in the database.</p>`;
+                    return;
+                }
+                currentBank.forEach((q, index) => {
+                    const diffColor = q.difficulty === 'Hard' ? 'text-rose-400 bg-rose-500/10 border-rose-500/30' : (q.difficulty === 'Medium' ? 'text-indigo-400 bg-indigo-500/10 border-indigo-500/30' : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30');
+                    
+                    const card = document.createElement('div');
+                    card.className = "bg-slate-950 border border-slate-800 p-3.5 rounded-2xl flex flex-col gap-2.5 text-xs";
+                    card.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 font-extrabold border border-indigo-500/30">📁 ${q.category || 'General'}</span>
+                                <span class="px-2.5 py-1 rounded-lg font-bold border ${diffColor}">${q.difficulty || 'Beginner'}</span>
+                            </div>
+                            <button type="button" data-index="${index}" class="delete-q-btn bg-rose-500/10 text-rose-400 hover:bg-rose-600 hover:text-white px-3 py-1.5 rounded-xl font-bold transition cursor-pointer border border-rose-500/30">Delete 🗑️</button>
+                        </div>
+                        <div class="font-extrabold text-white text-sm">Q${index + 1}: ${q.text}</div>
+                        <div class="grid grid-cols-2 gap-1.5 text-[11px] text-slate-400 bg-slate-900 p-2.5 rounded-xl border border-slate-800/80">
+                            ${q.options.map((opt, optIdx) => `
+                                <div class="${optIdx === q.correctIndex ? 'text-emerald-400 font-bold flex items-center gap-1' : 'text-slate-300'}">
+                                    <span class="text-[10px] text-slate-500 font-mono">${String.fromCharCode(65 + optIdx)}:</span> ${opt} ${optIdx === q.correctIndex ? ' ✓' : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    adminBankList.appendChild(card);
+                });
+
+                document.querySelectorAll('.delete-q-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const idx = parseInt(e.target.getAttribute('data-index'));
+                        let currentBank = getQuizData();
+                        currentBank.splice(idx, 1);
+                        localStorage.setItem('prime_global_questions_bank', JSON.stringify(currentBank));
+                        renderAdminQuestionBankList();
+                    });
+                });
+            }
+
+            adminForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const category = document.getElementById('admin-category').value;
+                const difficulty = document.getElementById('admin-difficulty').value;
+                const text = document.getElementById('admin-qtext').value.trim();
+                const options = [
+                    document.getElementById('admin-opt0').value.trim(),
+                    document.getElementById('admin-opt1').value.trim(),
+                    document.getElementById('admin-opt2').value.trim(),
+                    document.getElementById('admin-opt3').value.trim()
+                ];
+                const correctIndex = parseInt(document.getElementById('admin-correct').value);
+
+                let currentBank = getQuizData();
+                currentBank.push({ text, options, correctIndex, difficulty, category });
+                localStorage.setItem('prime_global_questions_bank', JSON.stringify(currentBank));
+
+                adminStatus.textContent = `✅ Successfully added question to "${category}" (${difficulty})!`;
+                adminForm.reset();
+                adminCategorySelect.value = category;
+                if (adminTargetIndicator) adminTargetIndicator.textContent = `Target: ${category}`;
+                
+                renderAdminQuestionBankList();
+                setTimeout(() => { adminStatus.textContent = ""; }, 3000);
+            });
+
+            togglePasswordBtn.addEventListener('click', () => {
+                if (authPasswordInput.type === 'password') {
+                    authPasswordInput.type = 'text';
+                    togglePasswordBtn.textContent = '🙈';
+                } else {
+                    authPasswordInput.type = 'password';
+                    togglePasswordBtn.textContent = '👁️';
+                }
+            });
+
+            function getPlayerRankInfo(xp) {
+                if (xp >= 300) return { title: "👑 Prime Elite", color: "text-amber-300 font-extrabold" };
+                if (xp >= 150) return { title: "🧠 Brainiac", color: "text-violet-400 font-bold" };
+                if (xp >= 51)  return { title: "⚡ Challenger", color: "text-indigo-400 font-medium" };
+                return { title: "🟢 Rookie", color: "text-slate-300" };
+            }
+
+            function checkUserSession() {
+                const activeUser = localStorage.getItem('prime_active_user');
+                if (activeUser) {
+                    const user = JSON.parse(activeUser);
+                    navAuthArea.innerHTML = `
+                        <div class="flex items-center gap-3 bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl">
+                            <span class="text-xs font-bold text-indigo-400">👤 @${user.nickname}</span>
+                            <button type="button" id="logout-btn" class="text-xs text-slate-400 hover:text-rose-400 font-bold transition cursor-pointer">Logout</button>
+                        </div>
+                    `;
+                    document.getElementById('logout-btn').addEventListener('click', handleLogout);
+                    trackOnlinePlayer(user.nickname);
+                }
+            }
+
+            function trackOnlinePlayer(nickname) {
+                let online = JSON.parse(localStorage.getItem('prime_online_users') || '[]');
+                if (!online.includes(nickname)) {
+                    online.push(nickname);
+                    localStorage.setItem('prime_online_users', JSON.stringify(online));
+                }
+            }
+
+            function openAuthModal(mode) {
+                isLoginMode = (mode === 'login');
+                updateAuthModalUI();
+                authModal.classList.remove('hidden');
+            }
+
+            function closeAuthModal() { authModal.classList.add('hidden'); }
+            function toggleAuthMode() { isLoginMode = !isLoginMode; updateAuthModalUI(); }
+
+            function updateAuthModalUI() {
+                if (isLoginMode) {
+                    authModalTitle.textContent = "Welcome Back";
+                    authModalSubtitle.textContent = "Log in to your PRIME QUIZES account.";
+                    signupFields.classList.add('hidden');
+                    forgotPasswordTrigger.classList.remove('hidden');
+                    authSubmitBtn.textContent = "Log In";
+                    authSwitchText.textContent = "Don't have an account?";
+                    authSwitchBtn.textContent = "Sign Up";
+                } else {
+                    authModalTitle.textContent = "Create Account";
+                    authModalSubtitle.textContent = "Enter your details to register for PRIME QUIZES.";
+                    signupFields.classList.remove('hidden');
+                    forgotPasswordTrigger.classList.add('hidden');
+                    authSubmitBtn.textContent = "Sign Up";
+                    authSwitchText.textContent = "Already have an account?";
+                    authSwitchBtn.textContent = "Log In";
+                }
+            }
+
+            function handleAuthSubmit(event) {
+                event.preventDefault();
+                const email = document.getElementById('auth-email').value.trim();
+                const password = authPasswordInput.value;
+                let users = JSON.parse(localStorage.getItem('prime_users_db') || '[]');
+
+                if (isLoginMode) {
+                    const foundUser = users.find(u => u.email === email && u.password === password);
+                    if (foundUser) {
+                        localStorage.setItem('prime_active_user', JSON.stringify(foundUser));
+                        closeAuthModal();
+                        checkUserSession();
+                    } else { alert("Invalid email or password."); }
+                } else {
+                    const fullName = document.getElementById('auth-fullname').value.trim();
+                    const nickname = document.getElementById('auth-nickname').value.trim();
+                    if (users.some(u => u.email === email)) { alert("An account with this email already exists!"); return; }
+
+                    const newUser = { fullName, nickname, email, password };
+                    users.push(newUser);
+                    localStorage.setItem('prime_users_db', JSON.stringify(users));
+                    localStorage.setItem('prime_active_user', JSON.stringify(newUser));
+                    closeAuthModal();
+                    checkUserSession();
+                }
+            }
+
+            forgotPasswordTrigger.addEventListener('click', () => {
+                closeAuthModal();
+                document.getElementById('forgot-email').value = "";
+                document.getElementById('forgot-fullname').value = "";
+                document.getElementById('forgot-newpassword').value = "";
+                forgotStatus.textContent = "";
+                forgotModal.classList.remove('hidden');
+            });
+
+            forgotCloseBtn.addEventListener('click', () => {
+                forgotModal.classList.add('hidden');
+            });
+
+            forgotForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('forgot-email').value.trim();
+                const fullName = document.getElementById('forgot-fullname').value.trim();
+                const newPassword = document.getElementById('forgot-newpassword').value;
+
+                let users = JSON.parse(localStorage.getItem('prime_users_db') || '[]');
+                const userIndex = users.findIndex(u => u.email === email && u.fullName.toLowerCase() === fullName.toLowerCase());
+
+                if (userIndex > -1) {
+                    users[userIndex].password = newPassword;
+                    localStorage.setItem('prime_users_db', JSON.stringify(users));
+                    forgotStatus.className = "text-center text-xs font-bold text-emerald-400";
+                    forgotStatus.textContent = "✅ Password successfully reset! You can now log in.";
+                    setTimeout(() => {
+                        forgotModal.classList.add('hidden');
+                        openAuthModal('login');
+                    }, 2000);
+                } else {
+                    forgotStatus.className = "text-center text-xs font-bold text-rose-400";
+                    forgotStatus.textContent = "❌ No matching account found with that Email and Full Name.";
+                }
+            });
+
+            function handleLogout() {
+                const activeUser = JSON.parse(localStorage.getItem('prime_active_user') || '{}');
+                if (activeUser.nickname) {
+                    let online = JSON.parse(localStorage.getItem('prime_online_users') || '[]');
+                    online = online.filter(n => n !== activeUser.nickname);
+                    localStorage.setItem('prime_online_users', JSON.stringify(online));
+                }
+                localStorage.removeItem('prime_active_user');
+                navAuthArea.innerHTML = `
+                    <button type="button" id="nav-login-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-slate-200 cursor-pointer">Log In</button>
+                    <button type="button" id="nav-signup-btn" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition font-bold shadow-lg shadow-indigo-600/25 cursor-pointer">Sign Up</button>
+                `;
+                document.getElementById('nav-login-btn').addEventListener('click', () => openAuthModal('login'));
+                document.getElementById('nav-signup-btn').addEventListener('click', () => openAuthModal('signup'));
+                showHome();
+            }
+
+            function showHome() {
+                clearInterval(timerInterval);
+                homeScreen.classList.remove('hidden');
+                difficultyScreen.classList.add('hidden');
+                quizScreen.classList.add('hidden');
+                resultsScreen.classList.add('hidden');
+                communityHub.classList.add('hidden');
+            }
+
+            function showDifficultySelection(category) {
+                const activeUser = localStorage.getItem('prime_active_user');
+                if (!activeUser) { alert("🔒 You must log in or sign up before playing."); openAuthModal('signup'); return; }
+                
+                currentCategory = category;
+                selectedCategoryBadge.textContent = `📁 Category: ${category}`;
+                homeScreen.classList.add('hidden');
+                difficultyScreen.classList.remove('hidden');
+            }
+
+            function toggleCommunityHub() {
+                const activeUser = localStorage.getItem('prime_active_user');
+                if (!activeUser) {
+                    alert("🔒 Log in or sign up to view the Leaderboard and Chat.");
+                    openAuthModal('signup');
+                    return;
+                }
+                clearInterval(timerInterval);
+                homeScreen.classList.add('hidden');
+                difficultyScreen.classList.add('hidden');
+                quizScreen.classList.add('hidden');
+                resultsScreen.classList.add('hidden');
+                communityHub.classList.remove('hidden');
+                currentChatMode = 'global';
+                updateChatTabsUI();
+                renderCommunityData();
+            }
+
+            function updateChatTabsUI() {
+                if (currentChatMode === 'global') {
+                    tabGlobalBtn.className = "px-4 py-2 rounded-xl bg-emerald-600 text-slate-950 font-extrabold text-xs transition cursor-pointer";
+                    tabDmBtn.className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs transition cursor-pointer";
+                    activeChatTitle.textContent = "Public Channel";
+                    chatInput.placeholder = "Say something to global players...";
+                    chatSendBtn.className = "bg-emerald-600 text-slate-950 font-bold px-5 py-3 rounded-xl hover:bg-emerald-500 transition text-xs cursor-pointer";
+                } else {
+                    tabGlobalBtn.className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs transition cursor-pointer";
+                    tabDmBtn.className = "px-4 py-2 rounded-xl bg-indigo-600 text-white font-extrabold text-xs transition cursor-pointer";
+                    if (activeDmRecipient) {
+                        activeChatTitle.textContent = `🔒 Direct Message with @${activeDmRecipient}`;
+                        chatInput.placeholder = `Message @${activeDmRecipient}...`;
+                    } else {
+                        activeChatTitle.textContent = "🔒 Select a player to DM";
+                        chatInput.placeholder = "Select a player from the left list first...";
+                    }
+                    chatSendBtn.className = "bg-indigo-600 text-white font-bold px-5 py-3 rounded-xl hover:bg-indigo-500 transition text-xs cursor-pointer";
+                }
+                renderActiveChatMessages();
+            }
+
+            function renderCommunityData() {
+                let leaderboard = JSON.parse(localStorage.getItem('prime_leaderboard') || '[]');
+                const MAX_REALISTIC_XP = 2000;
+                leaderboard = leaderboard.map(item => ({
+                    nickname: item.nickname,
+                    score: item.score > MAX_REALISTIC_XP ? MAX_REALISTIC_XP : item.score
+                }));
+
+                leaderboard.sort((a, b) => b.score - a.score);
+                
+                leaderboardList.innerHTML = "";
+                if (leaderboard.length === 0) {
+                    leaderboardList.innerHTML = `<p class="text-slate-500 text-xs italic">No XP recorded yet.</p>`;
+                } else {
+                    leaderboard.forEach((item, idx) => {
+                        const row = document.createElement('div');
+                        row.className = "flex justify-between items-center bg-slate-950 px-3 py-2 rounded-xl border border-slate-800 text-xs";
+                        row.innerHTML = `
+                            <div class="flex items-center gap-1.5 truncate">
+                                <span class="font-bold text-slate-400">#${idx + 1}</span>
+                                <span class="font-bold text-slate-200 truncate">@${item.nickname}</span>
+                            </div>
+                            <span class="text-amber-400 font-extrabold">${item.score}XP</span>`;
+                        leaderboardList.appendChild(row);
+                    });
+                }
+
+                let online = JSON.parse(localStorage.getItem('prime_online_users') || '[]');
+                const activeUser = JSON.parse(localStorage.getItem('prime_active_user') || '{}');
+                
+                onlinePlayersList.innerHTML = "";
+                if (online.length === 0) {
+                    onlinePlayersList.innerHTML = `<p class="text-slate-500 text-xs italic">No players online.</p>`;
+                    return;
+                }
+
+                online.forEach(name => {
+                    if (name === activeUser.nickname) return;
+                    const btn = document.createElement('button');
+                    btn.type = "button";
+                    btn.className = `w-full text-left px-3 py-2 rounded-xl border transition text-xs flex items-center justify-between cursor-pointer ${activeDmRecipient === name ? 'bg-indigo-950 border-indigo-500 text-indigo-300 font-bold' : 'bg-slate-950 border-slate-800 text-slate-300 hover:bg-slate-800'}`;
+                    btn.innerHTML = `<div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <span>@${name}</span></div> <span class="text-[10px] text-indigo-400">DM 💬</span>`;
+                    btn.addEventListener('click', () => {
+                        activeDmRecipient = name;
+                        currentChatMode = 'dm';
+                        updateChatTabsUI();
+                        renderCommunityData();
+                    });
+                    onlinePlayersList.appendChild(btn);
+                });
+
+                renderActiveChatMessages();
+            }
+
+            function saveXPToLeaderboard(nickname, earnedXP) {
+                if (earnedXP > 500) return; 
+                let leaderboard = JSON.parse(localStorage.getItem('prime_leaderboard') || '[]');
+                const existingIndex = leaderboard.findIndex(item => item.nickname === nickname);
+                if (existingIndex > -1) {
+                    leaderboard[existingIndex].score += earnedXP;
+                } else {
+                    leaderboard.push({ nickname, score: earnedXP });
+                }
+                localStorage.setItem('prime_leaderboard', JSON.stringify(leaderboard));
+            }
+
+            function renderActiveChatMessages() {
+                chatMessages.innerHTML = "";
+                const activeUser = JSON.parse(localStorage.getItem('prime_active_user') || '{}');
+                let leaderboard = JSON.parse(localStorage.getItem('prime_leaderboard') || '[]');
+
+                if (currentChatMode === 'global') {
+                    let messages = JSON.parse(localStorage.getItem('prime_chat_messages') || '[]');
+                    if (messages.length === 0) {
+                        chatMessages.innerHTML = `<p class="text-slate-600 text-xs italic text-center py-6">No global messages yet. Say hello!</p>`;
+                        return;
+                    }
+                    messages.forEach(msg => {
+                        const cleanText = String(msg.text).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                        const userRecord = leaderboard.find(l => l.nickname === msg.sender);
+                        const userXP = userRecord ? userRecord.score : 0;
+                        const rankInfo = getPlayerRankInfo(userXP);
+
+                        const div = document.createElement('div');
+                        div.className = "bg-slate-900 border border-slate-800 p-2.5 rounded-xl";
+                        div.innerHTML = `<span class="${rankInfo.color}">@${msg.sender}:</span> <span class="text-slate-200">${cleanText}</span>`;
+                        chatMessages.appendChild(div);
+                    });
+                } else {
+                    if (!activeDmRecipient) {
+                        chatMessages.innerHTML = `<p class="text-indigo-400 text-xs italic text-center py-6">👈 Click an online player on the left panel to open a private conversation.</p>`;
+                        return;
+                    }
+                    let dmKey = getDmStorageKey(activeUser.nickname, activeDmRecipient);
+                    let messages = JSON.parse(localStorage.getItem(dmKey) || '[]');
+                    if (messages.length === 0) {
+                        chatMessages.innerHTML = `<p class="text-slate-500 text-xs italic text-center py-6">No messages with @${activeDmRecipient} yet. Start the conversation!</p>`;
+                        return;
+                    }
+                    messages.forEach(msg => {
+                        const cleanText = String(msg.text).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                        const isMe = msg.sender === activeUser.nickname;
+                        const div = document.createElement('div');
+                        div.className = `p-2.5 rounded-xl border max-w-[85%] ${isMe ? 'bg-indigo-950/40 border-indigo-500/30 ml-auto text-right' : 'bg-slate-900 border-slate-800 mr-auto'}`;
+                        div.innerHTML = `<div class="text-[10px] text-slate-400 mb-0.5">@${msg.sender}</div><span class="text-slate-200">${cleanText}</span>`;
+                        chatMessages.appendChild(div);
+                    });
+                }
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function getDmStorageKey(userA, userB) {
+                const sorted = [userA, userB].sort();
+                return `prime_dm_${sorted[0]}_${sorted[1]}`;
+            }
+
+            function handleSendMessage(event) {
+                event.preventDefault();
+                const activeUser = JSON.parse(localStorage.getItem('prime_active_user') || '{}');
+                if (!activeUser.nickname) { alert("Please log in to chat."); openAuthModal('login'); return; }
+                
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                if (currentChatMode === 'global') {
+                    let messages = JSON.parse(localStorage.getItem('prime_chat_messages') || '[]');
+                    messages.push({ sender: activeUser.nickname, text });
+                    if (messages.length > 50) messages.shift();
+                    localStorage.setItem('prime_chat_messages', JSON.stringify(messages));
+                } else {
+                    if (!activeDmRecipient) { alert("Select a recipient first!"); return; }
+                    let dmKey = getDmStorageKey(activeUser.nickname, activeDmRecipient);
+                    let messages = JSON.parse(localStorage.getItem(dmKey) || '[]');
+                    messages.push({ sender: activeUser.nickname, text });
+                    if (messages.length > 50) messages.shift();
+                    localStorage.setItem(dmKey, JSON.stringify(messages));
+                }
+
+                chatInput.value = "";
+                renderActiveChatMessages();
+            }
+
+            function startQuiz(difficulty) {
+                currentDifficulty = difficulty;
+                const fullBank = getQuizData();
+                
+                quizData = fullBank.filter(q => {
+                    const qCat = q.category || 'General';
+                    const qDiff = q.difficulty || 'Beginner';
+                    return qCat === currentCategory && qDiff === currentDifficulty;
+                });
+
+                if (quizData.length === 0) {
+                    alert(`⚠️ No questions are currently available for "${currentCategory}" under "${currentDifficulty}" difficulty. Please check back later or try another category!`);
+                    showDifficultySelection(currentCategory);
+                    return;
+                }
+
+                currentQuestionIndex = 0;
+                roundXP = 0;
+                correctAnswersCount = 0;
+                currentStreak = 0;
+                quizHistoryTracker = [];
+                homeScreen.classList.add('hidden');
+                difficultyScreen.classList.add('hidden');
+                resultsScreen.classList.add('hidden');
+                communityHub.classList.add('hidden');
+                quizScreen.classList.remove('hidden');
+                loadQuestion();
+            }
+
+            function loadQuestion() {
+                clearInterval(timerInterval);
+                timeLeft = 15;
+                timerBox.textContent = `⏳ ${timeLeft}s`;
+                timerBox.className = "px-3 py-1.5 rounded-xl text-white bg-indigo-600 font-bold shadow-md";
+                
+                if (currentStreak > 1) {
+                    streakBox.classList.remove('hidden');
+                    streakBox.textContent = `🔥 Streak: ${currentStreak}`;
+                } else {
+                    streakBox.classList.add('hidden');
+                }
+
+                startTimer();
+                selectedOptionIndex = null;
+                nextBtn.disabled = true;
+                nextBtn.classList.remove('bg-indigo-600', 'hover:bg-indigo-500', 'shadow-lg', 'shadow-indigo-600/30', 'cursor-pointer', 'text-white');
+                nextBtn.classList.add('text-slate-500', 'bg-slate-800', 'cursor-not-allowed');
+
+                const q = quizData[currentQuestionIndex];
+                questionProgress.textContent = `${currentCategory} • ${currentDifficulty} • Q${currentQuestionIndex + 1}/${quizData.length}`;
+                questionText.textContent = q.text;
+
+                optionsContainer.innerHTML = "";
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.type = "button";
+                    btn.className = "w-full text-left p-4 rounded-2xl bg-slate-950 border border-slate-800 hover:border-slate-700 font-semibold text-slate-200 transition cursor-pointer flex items-center justify-between";
+                    btn.innerHTML = `<span>${opt}</span> <span class="w-6 h-6 rounded-full border border-slate-700 flex items-center justify-center text-xs text-slate-500 font-bold">${String.fromCharCode(65 + idx)}</span>`;
+                    btn.addEventListener('click', () => selectOption(idx, btn));
+                    optionsContainer.appendChild(btn);
+                });
+            }
+
+            function startTimer() {
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    timerBox.textContent = `⏳ ${timeLeft}s`;
+                    if (timeLeft <= 5) timerBox.className = "px-3 py-1.5 rounded-xl text-white bg-rose-600 font-bold shadow-md animate-pulse";
+                    if (timeLeft <= 0) { 
+                        clearInterval(timerInterval); 
+                        currentStreak = 0; 
+                        recordAndAutoAdvance(-1);
+                    }
+                }, 1000);
+            }
+
+            function recordAndAutoAdvance(selectedIndex) {
+                if (selectedOptionIndex !== null) return;
+                selectedOptionIndex = selectedIndex;
+                clearInterval(timerInterval);
+
+                const q = quizData[currentQuestionIndex];
+                const isCorrect = (selectedIndex === q.correctIndex);
+
+                quizHistoryTracker.push({
+                    questionText: q.text,
+                    options: q.options,
+                    userSelectedIndex: selectedIndex,
+                    correctIndex: q.correctIndex,
+                    isCorrect: isCorrect
+                });
+
+                const allButtons = optionsContainer.querySelectorAll('button');
+                allButtons.forEach((btn, i) => {
+                    btn.disabled = true;
+                    if (i === q.correctIndex) {
+                        btn.classList.remove('bg-slate-950', 'border-slate-800');
+                        btn.classList.add('bg-emerald-950/80', 'border-emerald-500', 'text-emerald-300');
+                    }
+                });
+
+                if (isCorrect) {
+                    currentStreak++;
+                    correctAnswersCount++;
+                    let multiplier = currentDifficulty === 'Hard' ? 2 : (currentDifficulty === 'Medium' ? 1.5 : 1);
+                    let earned = Math.round((10 + (timeLeft * 2) + (currentStreak > 1 ? currentStreak * 5 : 0)) * multiplier);
+                    roundXP += earned;
+                } else {
+                    currentStreak = 0;
+                    if (selectedIndex >= 0 && selectedIndex < allButtons.length) {
+                        allButtons[selectedIndex].classList.remove('bg-slate-950', 'border-slate-800');
+                        allButtons[selectedIndex].classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-300');
+                    }
+                }
+
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('text-slate-500', 'bg-slate-800', 'cursor-not-allowed');
+                nextBtn.classList.add('bg-indigo-600', 'hover:bg-indigo-500', 'shadow-lg', 'shadow-indigo-600/30', 'cursor-pointer', 'text-white');
+            }
+
+            function selectOption(idx, buttonElement) {
+                recordAndAutoAdvance(idx);
+            }
+
+            function handleNextQuestion() {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.length) { loadQuestion(); } else { showResults(); }
+            }
+
+            function showResults() {
+                clearInterval(timerInterval);
+                quizScreen.classList.add('hidden');
+                resultsScreen.classList.remove('hidden');
+                finalScoreDisplay.textContent = `${roundXP} XP`;
+
+                const accuracy = (correctAnswersCount / quizData.length) * 100;
+
+                if (roundXP >= 50 || accuracy >= 80) {
+                    playVictorySound();
+                    document.getElementById('cheers-emoji').textContent = "🎉🏆🔥";
+                    document.getElementById('cheers-title').textContent = "Outstanding Victory!";
+                    document.getElementById('cheers-message').textContent = `Incredible! You scored ${roundXP} XP in ${currentCategory} (${currentDifficulty}) with ${Math.round(accuracy)}% accuracy!`;
+                } else {
+                    document.getElementById('cheers-emoji').textContent = "👍";
+                    document.getElementById('cheers-title').textContent = "Good Effort!";
+                    document.getElementById('cheers-message').textContent = `You scored ${roundXP} XP. Review your answers below to sharpen your skills!`;
+                }
+
+                reviewBreakdownList.innerHTML = "";
+                quizHistoryTracker.forEach((item, idx) => {
+                    const userChoiceText = item.userSelectedIndex >= 0 ? item.options[item.userSelectedIndex] : "⏰ Time Ran Out";
+                    const correctChoiceText = item.options[item.correctIndex];
+                    
+                    const card = document.createElement('div');
+                    card.className = `p-3.5 rounded-2xl border ${item.isCorrect ? 'bg-slate-950 border-slate-800' : 'bg-rose-950/20 border-rose-900/50'}`;
+                    card.innerHTML = `
+                        <div class="font-bold text-slate-200 mb-1 flex items-center justify-between">
+                            <span>Q${idx + 1}: ${item.questionText}</span>
+                            <span>${item.isCorrect ? '✅ Correct' : '❌ Missed'}</span>
+                        </div>
+                        <div class="text-[11px] space-y-0.5">
+                            <div class="${item.isCorrect ? 'text-emerald-400' : 'text-rose-400'}">Your Answer: <span class="font-semibold">${userChoiceText}</span></div>
+                            ${!item.isCorrect ? `<div class="text-emerald-400">Correct Answer: <span class="font-semibold">${correctChoiceText}</span></div>` : ''}
+                        </div>
+                    `;
+                    reviewBreakdownList.appendChild(card);
+                });
+
+                const activeUser = JSON.parse(localStorage.getItem('prime_active_user') || '{}');
+                if (activeUser.nickname && roundXP > 0) { saveXPToLeaderboard(activeUser.nickname, roundXP); }
+            }
+
+            tabGlobalBtn.addEventListener('click', () => {
+                currentChatMode = 'global';
+                activeDmRecipient = null;
+                updateChatTabsUI();
+                renderCommunityData();
+            });
+
+            tabDmBtn.addEventListener('click', () => {
+                currentChatMode = 'dm';
+                updateChatTabsUI();
+            });
+
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    showDifficultySelection(card.getAttribute('data-category'));
+                });
+            });
+
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    startQuiz(btn.getAttribute('data-difficulty'));
+                });
+            });
+
+            document.getElementById('back-to-categories-btn').addEventListener('click', showHome);
+            document.getElementById('home-hub-btn').addEventListener('click', toggleCommunityHub);
+            document.getElementById('nav-home-btn').addEventListener('click', showHome);
+            document.getElementById('nav-play-btn').addEventListener('click', showHome);
+            document.getElementById('nav-hub-btn').addEventListener('click', toggleCommunityHub);
+            document.getElementById('hub-back-btn').addEventListener('click', showHome);
+            document.getElementById('results-retry-btn').addEventListener('click', () => startQuiz(currentDifficulty));
+            document.getElementById('results-hub-btn').addEventListener('click', toggleCommunityHub);
+            document.getElementById('nav-login-btn').addEventListener('click', () => openAuthModal('login'));
+            document.getElementById('nav-signup-btn').addEventListener('click', () => openAuthModal('signup'));
+            document.getElementById('auth-close-btn').addEventListener('click', closeAuthModal);
+            document.getElementById('auth-switch-btn').addEventListener('click', toggleAuthMode);
+            document.getElementById('auth-form').addEventListener('submit', handleAuthSubmit);
+            chatForm.addEventListener('submit', handleSendMessage);
+            nextBtn.addEventListener('click', handleNextQuestion);
+
+            checkUserSession();
+            showHome();
+        });
+    </script>
+</body>
+</html>
